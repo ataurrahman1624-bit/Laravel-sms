@@ -16,7 +16,7 @@ $request->validate([
     'name'           => 'required|max:50',
     'parent_name'    => 'required|max:50',
     'email'          => 'nullable|email|unique:student_admissions', // Changed to student_admissions
-    'phone'          => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|size:11', 
+    'phone'          => 'nullable', 
     'address'        => 'required|string|max:255',
     'payment_method' => 'required|in:cash,card,online,bkash',           
     'transaction_id' => 'required_if:payment_method,online,bkash|unique:student_admissions' // Changed to student_admissions
@@ -26,9 +26,7 @@ $request->validate([
             'parent_name.required' => 'Parent name is required.',
             'email.email' => 'Please enter a valid email address.',
             'email.unique' => 'This email address is already registered.',
-            'phone.regex' => 'Please enter a valid phone number.',
-            'phone.min' => 'Phone number must be at least 10 digits.',
-            'phone.max' => 'Phone number cannot exceed 20 digits.',
+            'phone.size' => 'Phone number must be exactly 11 digits.',
             'address.required' => 'Address is required.',
             'payment_method.required' => 'Please select a payment method.',
             'payment_method.in' => 'Invalid payment method selected.',
