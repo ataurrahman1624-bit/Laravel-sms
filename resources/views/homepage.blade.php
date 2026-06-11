@@ -30,7 +30,11 @@
     <main>
 <div class="max-w-3xl mx-auto my-10 p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
   <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b border-gray-100">Admission Form</h2>
-  
+  @if (session()->has('alert'))
+    <div class="bg-green-200 text-green-700 px-4 py-3 rounded mb-6">
+        {{ session('alert')['message'] }} 
+      </div>
+@endif
   <form action="{{ url('/student-info') }}" method="POST" class="space-y-6">
     @csrf
     <!-- Section: Personal Information -->

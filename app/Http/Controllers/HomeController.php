@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\StudentAdmission;
 
 use Illuminate\Http\Request;
 
@@ -32,6 +33,11 @@ $request->validate([
             'payment_method.in' => 'Invalid payment method selected.',
             'transaction_id.required_if' => 'Transaction ID is required for online payments.',
             'transaction_id.unique' => 'This transaction ID has already been used.'
+        ]);
+        StudentAdmission::create($request->all());
+        return back()->with('alert', [
+            'type' => 'success',
+            'message' => 'Student information submitted successfully!'
         ]);
     }
 }
